@@ -8,5 +8,7 @@
     <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="residue" jdbcType="INTEGER" property="residue" />
   </resultMap>
-
+  <select id="selectAllBook" resultMap="BaseResultMap">
+        select * from t_book;
+  </select>
 </mapper>
