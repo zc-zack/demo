@@ -11,4 +11,8 @@
   <select id="selectAllBook" resultMap="BaseResultMap">
         select * from t_book;
   </select>
+
+  <insert id="insertBook" parameterType="com.example.demo.entity.Book">
+        insert into t_book(book_name, publish, author, residue) values(#{bookName}, #{publish}, #{author}, #{residue})
+  </insert>
 </mapper>
