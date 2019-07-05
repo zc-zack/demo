@@ -22,4 +22,5 @@ public interface AdminService {
      *格式化JSON数据
      * */
     JSONObject formatBookJSON(List<Book> list);
+
 }
