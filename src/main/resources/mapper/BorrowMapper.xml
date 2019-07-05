@@ -12,4 +12,8 @@
     <select id="getBorrowList" resultMap="BaseResultMap" parameterType="int">
         select * from t_borrow where uid = #{uid}
     </select>
+
+  <select id="findAllBorrow" resultMap="BaseResultMap">
+        select * from t_borrow
+    </select>
 </mapper>

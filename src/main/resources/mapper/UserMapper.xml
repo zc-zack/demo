@@ -13,4 +13,8 @@
     select *
     from t_user where username=#{username} and password=${password} and role = #{role}
   </select>
+
+  <select id="findUserByUid" parameterType="int" resultMap="BaseResultMap">
+        select * from t_user where uid=#{value}
+  </select>
 </mapper>

@@ -7,4 +7,5 @@ import java.util.List;
 public interface BorrowMapper {
 
     List<Borrow> getBorrowList(int uid);
+    List<Borrow> findAllBorrow();
 }

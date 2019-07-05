@@ -12,6 +12,10 @@
         select * from t_book;
   </select>
 
+    <select id="findBookByBid" resultMap="BaseResultMap">
+        select * from t_book where bid=#{value}
+  </select>
+
     <select id="getAllBook" resultMap="BaseResultMap">
         select * from t_book;
     </select>

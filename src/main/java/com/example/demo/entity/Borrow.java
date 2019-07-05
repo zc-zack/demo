@@ -50,4 +50,15 @@ public class Borrow {
     public void setBackTime(String backTime) {
         this.backTime = backTime == null ? null : backTime.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Borrow{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", bid=" + bid +
+                ", borrowTime='" + borrowTime + '\'' +
+                ", backTime='" + backTime + '\'' +
+                '}';
+    }
 }

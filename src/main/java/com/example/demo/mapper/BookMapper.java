@@ -32,4 +32,6 @@ public interface BookMapper {
     int updateBookById(Book book);
 
     Book getBookByBid(Integer bid);
+
+    Book findBookByBid(Integer bid);
 }
