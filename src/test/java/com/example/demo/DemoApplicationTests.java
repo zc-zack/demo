@@ -23,7 +23,8 @@ public class DemoApplicationTests {
         book.setBookName("测试书籍");
         book.setPublish("测试出版社");
         book.setResidue(123);
-        System.out.println(bookMapper.insertBook(book));
+        book.setBid(1);
+        System.out.println(bookMapper.updateBookById(book));
     }
 
 }

@@ -23,4 +23,16 @@ public interface AdminService {
      * */
     JSONObject formatBookJSON(List<Book> list);
 
+    /*
+    * 插入书籍
+    * */
+    int addBook(JSONObject jsonObject);
+
+    /*
+    * 删除格式
+    * */
+    int deleteBook(JSONObject jsonObject);
+
+    int updateBook(JSONObject jsonObject);
+
 }

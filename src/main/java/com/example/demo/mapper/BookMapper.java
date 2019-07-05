@@ -18,4 +18,15 @@ public interface BookMapper {
 
     List<Book> getAllBook();
     //
+
+    /*
+    * 删除图书
+    * */
+    int deleteBookById(int did);
+
+    /*
+    * 改
+    * */
+    int updateBookById(Book book);
+
 }
