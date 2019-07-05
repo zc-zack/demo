@@ -17,6 +17,8 @@ public interface BookMapper {
     int insertBook(Book book);
 
     List<Book> getAllBook();
+
+    List<Book> selectBookByBid(int uid);
     //
 
     /*

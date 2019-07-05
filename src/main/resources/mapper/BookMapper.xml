@@ -20,6 +20,10 @@
         insert into t_book(book_name, publish, author, residue) values(#{bookName}, #{publish}, #{author}, #{residue})
   </insert>
 
+    <select id="selectBookByBid" parameterType="String" resultMap="com.example.demo.entity.Book">
+        select * from t_book where uid = #{uid}
+  </select>
+
   <!--删除图书-->
   <delete id="deleteBookById" parameterType="java.lang.Integer">
         delete from t_book where bid = #{bid}
