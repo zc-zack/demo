@@ -10,4 +10,6 @@ public interface BookMapper {
     * 获取所有书本
     * */
     List<Book> selectAllBook();
+
+    List<Book> getAllBook();
 }

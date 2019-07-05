@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有图书</title>
+    <!-- -------------------JS------------------------- -->
+    <script type="text/javascript" src="/webjars/layui/2.4.5/layui.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="/webjars/layui/2.4.5/lay/modules/layer.js"></script>
+
+    <!-- -------------------CSS------------------------- -->
+    <link rel="stylesheet" href="/webjars/layui/2.4.5/css/layui.css">
+    <link rel="stylesheet" href="/webjars/layui/2.4.5/css/modules/layer/default/layer.css">
+</head>
+<body>
+<div class="layui-layer-border">
+    <h4 id="promptBox">查看所有用户>查看所有</h4>
+</div>
+<table class="layui-table" lay-data="{ height:500, url:'/getAllUsers.do', page:true, id:'idTest'}" lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+        <th lay-data="{field:'uid', width:80, sort: true, fixed: true}">UID</th>
+        <th lay-data="{field:'telephone', width:180}">电话号</th>
+        <th lay-data="{field:'username', width:180}">用户名</th>
+        <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+        <th lay-data="{field:'introduce', width:250}">签名</th>
+        <th lay-data="{field:'status', width:80, sort: true, fixed: 'right'}">状态</th>
+        <th lay-data="{field:'role', width:80, sort: true, fixed: 'right'}">权限</th>
+        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">封号</a>
+    <a class="layui-btn layui-btn-xs" lay-event="Unsealing">解封</a>
+</script>
+
+<script type="text/javascript">
+
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    layui.use('table', function(){
+        var table = layui.table;
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.confirm('UID：'+ data.uid + '<br>' +
+                    '电话号：' + data.telephone + '<br>' +
+                    '用户名：' + data.username + '<br>' +
+                    '性别：' + data.sex + '<br>' +
+                    '签名：' + data.introduce + '<br>' +
+                    '状态：' + data.status + '<br>' +
+                    '权限：' + data.role + '<br>' +
+                    '', function(index){
+                    layer.close(index);
+                });
+
+            } else if(obj.event === 'del'){ //封号
+                if (data.status == "正常"){
+                    layer.confirm('真的要把这个人的账号封掉么', function(index){
+                        var load = layer.load(1, {
+                            shade: [0.1,'#fff'] //0.1透明度的白色背景
+                        });
+                        $.ajax({
+                            type: "post",
+                            url: "deleteUser.do",
+                            data: {
+                                uid : data.uid
+                            },
+                            success: function (result) {
+                                //obj.del();//删除行
+                                layer.msg(result);//删除成功！
+                            }
+                        });
+                        layer.close(index);
+                        layer.close(load);
+                    });
+                } else if (data.status == "封号"){
+                    layer.msg("这个人已经被封号了，别再封了");
+                }else {
+                    layer.msg("用户状态异常，请重新查询");
+                }
+            } else if(obj.event === 'Unsealing'){ //解封
+                layer.alert("确定要给他解封吗？");
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            ,getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+            }
+            ,isAll: function(){ //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选': '未全选')
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>
