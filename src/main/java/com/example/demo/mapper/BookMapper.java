@@ -17,5 +17,18 @@ public interface BookMapper {
     int insertBook(Book book);
 
     List<Book> getAllBook();
+
+    List<Book> selectBookByBid(int uid);
     //
+
+    /*
+    * 删除图书
+    * */
+    int deleteBookById(int did);
+
+    /*
+    * 改
+    * */
+    int updateBookById(Book book);
+
 }

@@ -38,6 +38,21 @@ public class AdminServiceImp implements AdminService {
         return jsonObject;
     }
 
+    @Override
+    public int addBook(JSONObject jsonObject) {
+        Book book = JSON.parseObject(jsonObject.toJSONString(), Book.class);
+        return bookMapper.insertBook(book);
+    }
+
+    @Override
+    public int deleteBook(JSONObject jsonObject) {
+        return bookMapper.deleteBookById((Integer) jsonObject.get("bid"));
+    }
+
+    @Override
+    public int updateBook(JSONObject jsonObject) {
+        return bookMapper.updateBookById(JSON.parseObject(jsonObject.toJSONString(), Book.class));
+    }
 
 
 }

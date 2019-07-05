@@ -15,9 +15,20 @@ public class BookController {
     @ResponseBody
     @RequestMapping("/getAllBook.do")
     public String getAllBook(){
-        System.out.println("11111");
+        System.out.println("getAllBook");
         String result;
         result = bookService.getAllBook();
+        result = "{\"code\":0,\"msg\":\"\",\"count\":1000,\"data\":" + result;
+        result = result + "}";
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectBorrowBook.do")
+    public String selectBorrowBook(int uid){
+        System.out.println("selectBorrowBook");
+        String result;
+        result = bookService.selectBorrowBook(uid);
         result = "{\"code\":0,\"msg\":\"\",\"count\":1000,\"data\":" + result;
         result = result + "}";
         return result;

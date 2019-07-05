@@ -9,4 +9,7 @@
     <result column="back_time" jdbcType="VARCHAR" property="backTime" />
   </resultMap>
 
+    <select id="getBorrowList" resultMap="com.example.demo.entity.Borrow" parameterType="int">
+        select * from t_borrow where uid = #{uid}
+    </select>
 </mapper>
