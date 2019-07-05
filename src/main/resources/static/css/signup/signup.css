@@ -10,5 +10,13 @@
 }
 
 .form{
-    margin: 350px 650px 700px 600px;
+    margin: 25% 0px 0px 43%;
+}
+
+input{
+    width: 200px;
+}
+
+button{
+    width: 200px;
 }
