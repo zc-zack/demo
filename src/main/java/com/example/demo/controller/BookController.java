@@ -26,10 +26,11 @@ public class BookController {
     @ResponseBody
     @RequestMapping("/selectBorrowBook.do")
     public String selectBorrowBook(int uid){
+        uid = 1;
         System.out.println("selectBorrowBook");
         String result;
         result = bookService.selectBorrowBook(uid);
-        result = "{\"code\":0,\"msg\":\"\",\"count\":1000,\"data\":" + result;
+        result = "{\"code\":0,\"msg\":\"\",\"count\":10,\"data\":" + result;
         result = result + "}";
         return result;
     }

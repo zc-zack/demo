@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header" style="background-image: url('bg.png')">
+      <div class="layui-logo"></div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <i class="layui-icon" style="font-size: 15px">&#xe770;康杰牛逼</i>
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">退出</a></li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-cyan">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
+          <li class="layui-nav-item layui-this"><a href="">图书借阅</a></li>
+          <li class="layui-nav-item"><a href="">借阅历史</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body">
+
+      <!-- 内容主体区域 -->
+      <div style="padding: 15px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label for="name">图书名称:</label>
+                  <input type="text" class="form-control" style="width: 250px" placeholder="请输入图书名称">
+                </div>
+                <button type="submit" class="btn btn-primary">查询</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <table class="layui-table" lay-skin="line">
+          <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th>图书名称</th>
+              <th>出版社</th>
+              <th>作者</th>
+              <th>库存</th>
+              <th>操作</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>程序设计</td>
+              <td>经济学出版社</td>
+              <td>赵四</td>
+              <td>1</td>
+              <td><button type="button" class="btn-link">借阅</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="float: right;"id="test1"></div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">编辑图书</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">图书名称</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname" class="col-sm-2 control-label">出版社</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lastname" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname" class="col-sm-2 control-label">作者</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lastname" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname" class="col-sm-2 control-label">库存</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lastname" placeholder="">
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      <center>Copyright © 2016-2019 - 厦门理工学院版权所有</center>
+    </div>
+  </div>
+  <script src="./layui/layui.all.js"></script>
+  <script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+
+    });
+  </script>
+  <script>
+      layui.use('laypage', function(){
+        var laypage = layui.laypage;
+        
+        //执行一个laypage实例
+        laypage.render({
+          elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+          ,count: 50 //数据总数，从服务端得到
+        });
+      });
+      </script>
+</body>
+
+</html>
