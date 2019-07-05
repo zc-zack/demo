@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,5 +26,11 @@ public class AdminController {
     @ResponseBody
     public JSONObject getAllBook(){
         return adminService.getBookJSON();
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public int deleteBook(@RequestBody JSONObject jsonObject){
+        return 1;
     }
 }

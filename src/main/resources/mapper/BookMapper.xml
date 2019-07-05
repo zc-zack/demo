@@ -20,7 +20,7 @@
         insert into t_book(book_name, publish, author, residue) values(#{bookName}, #{publish}, #{author}, #{residue})
   </insert>
 
-    <select id="selectBookByBid" parameterType="String" resultMap="com.example.demo.entity.Book">
+    <select id="selectBookByBid" parameterType="String" resultMap="BaseResultMap">
         select * from t_book where uid = #{uid}
   </select>
 
