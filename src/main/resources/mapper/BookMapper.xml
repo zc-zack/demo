@@ -12,7 +12,7 @@
         select * from t_book;
   </select>
 
-    <select id="getAllBook" resultMap="com.example.demo.entity.Book">
+    <select id="getAllBook" resultMap="BaseResultMap">
         select * from t_book;
     </select>
 

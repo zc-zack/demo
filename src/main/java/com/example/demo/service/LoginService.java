@@ -1,7 +1,7 @@
-package com.example.demo.mapper;
+package com.example.demo.service;
 
 import com.example.demo.entity.User;
 
-public interface UserMapper {
+public interface LoginService {
     User signup(String username, String password, Integer role);
 }

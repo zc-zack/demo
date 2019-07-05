@@ -9,4 +9,8 @@
     <result column="number" jdbcType="VARCHAR" property="number" />
   </resultMap>
 
+  <select id="signup" parameterType="map" resultType="com.example.demo.entity.User">
+    select *
+    from t_user where username=#{username} and password=${password} and role = #{role}
+  </select>
 </mapper>
