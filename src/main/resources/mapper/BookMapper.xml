@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BookMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Book">
+    <result column="bid" jdbcType="INTEGER" property="bid" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="publish" jdbcType="VARCHAR" property="publish" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="residue" jdbcType="INTEGER" property="residue" />
+  </resultMap>
+
+</mapper>

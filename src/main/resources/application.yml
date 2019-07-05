@@ -4,7 +4,7 @@ service:
 spring:
   datasource:
     name: hoteldata
-    url: jdbc:mysql://139.224.115.237:3306/zhihu?characterEncoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://139.224.115.237:3306/book?characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: zhangC1997
     driver-class-name: com.mysql.cj.jdbc.Driver
