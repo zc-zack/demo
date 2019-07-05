@@ -11,5 +11,10 @@ public interface BookMapper {
     * */
     List<Book> selectAllBook();
 
+    /*
+    * 插入新的图书
+    * */
+    int insertBook(Book book);
+
     List<Book> getAllBook();
 }
