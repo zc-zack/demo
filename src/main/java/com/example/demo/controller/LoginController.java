@@ -34,6 +34,9 @@ public class LoginController {
             session.setAttribute("username", user.getUsername());
             session.setAttribute("uid", user.getUid());
             session.setAttribute("role", user.getRole());
+            if(user.getRole() == 1){
+                return "admin";
+            }
             return "stuPage";
         }
         return "signup";

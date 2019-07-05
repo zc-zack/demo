@@ -18,7 +18,7 @@
 
 <body class="layui-layout-body">
   <div class="layui-layout layui-layout-admin">
-    <div class="layui-header" style="background-image: url('bg.png')">
+    <div class="layui-header" style="background-image: url('img/bg.png')">
       <div class="layui-logo"></div>
       <!-- 头部区域（可配合layui已有的水平导航） -->
 
@@ -154,7 +154,6 @@
   </script>
 
 
-  <script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
   <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
   <script>
     layui.use('table', function(){
@@ -169,6 +168,17 @@
         if(obj.event === 'detail'){
           layer.msg('ID：'+ data.id + ' 的查看操作');
         } else if(obj.event === 'del'){
+          $.ajax({
+              url: "/delete",
+              data: JSON.stringify(data),
+              dataType:"json",
+              content: "application/json;utf-8",
+              type: "post",
+              success: function (result) {
+                layer.msg('删除成功');
+              }
+
+          });
           layer.confirm('真的删除行么', function(index){
             obj.del();
             layer.close(index);
