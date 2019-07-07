@@ -1,5 +1,8 @@
 package com.example.demo.serviceImp;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Borrow;
 import com.example.demo.entity.History;
@@ -36,12 +39,6 @@ public class HistoryServiceImp implements HistoryService {
         // 获取所有借阅信息
         borrowList = borrowMapper.findAllBorrow();
 
-        // 测试
-        for (Borrow temp : borrowList) {
-            System.out.println("Borrow:::"+temp);
-        }
-
-
         // 获取所有借阅用户和对应图书
         List<User> userList = new ArrayList<User>();
         List<Book> bookList = new ArrayList<Book>();
@@ -60,13 +57,30 @@ public class HistoryServiceImp implements HistoryService {
             history.setPublish(bookList.get(i).getPublish());
             history.setBorrowTime(borrowList.get(i).getBorrowTime());
             history.setBackTime(borrowList.get(i).getBackTime());
+            historyList.add(history);
         }
 
         // 测试
-        for (History temp : historyList) {
-            System.out.println("History::::"+temp);
-        }
+//        for (History temp : historyList) {
+//            System.out.println("History::::"+temp);
+//        }
 
         return historyList;
+    }
+
+    @Override
+    public JSONObject getHistoryJSON() {
+        return formatHistoryJSON(getHistory());
+    }
+
+    @Override
+    public JSONObject formatHistoryJSON(List<History> list) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code", 0);
+        jsonObject.put("msg","");
+        jsonObject.put("count", list.size());
+        JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(list));
+        jsonObject.put("data", jsonArray);
+        return jsonObject;
     }
 }

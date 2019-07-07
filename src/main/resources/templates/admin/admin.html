@@ -65,13 +65,27 @@
         </div>
 
 
-        <table class="layui-table" lay-data="{width: 892, height:330, url:'/getAllBook', page:true, id:'idTest'}" lay-filter="demo">
+        <!--<table class="layui-table" lay-data="{width: 892, height:330, url:'/getAllBook', page:true, id:'idTest'}" lay-filter="demo">
           <thead>
           <tr>
             <th lay-data="{field:'bookName', width:80, sort: true, fixed: true}">图书名字</th>
             <th lay-data="{field:'publish', width:80}">出版社</th>
             <th lay-data="{field:'author', width:80}">作者</th>
             <th lay-data="{field:'residue', width:80}">库存</th>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+          </tr>
+          </thead>
+        </table>-->
+        <table class="layui-table" lay-data="{width: 892, height:330, url:'/getHistory', page:true, id:'idTest'}" lay-filter="demo">
+          <thead>
+          <tr>
+            <th lay-data="{field:'bookName', width:80, sort: true, fixed: true}">图书名字</th>
+            <th lay-data="{field:'publish', width:80}">出版社</th>
+            <th lay-data="{field:'author', width:80}">作者</th>
+            <th lay-data="{field:'userId', width:80}">借阅人学号</th>
+            <th lay-data="{field:'username', width:80}">借阅人姓名</th>
+            <th lay-data="{field:'borrowTime', width:80}">借阅时间</th>
+            <th lay-data="{field:'backTime', width:80}">归还时间</th>
             <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
           </tr>
           </thead>

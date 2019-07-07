@@ -50,4 +50,15 @@ public class User {
     public void setNumber(String number) {
         this.number = number == null ? null : number.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }

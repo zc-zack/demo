@@ -50,4 +50,15 @@ public class Book {
     public void setResidue(Integer residue) {
         this.residue = residue;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bid=" + bid +
+                ", bookName='" + bookName + '\'' +
+                ", publish='" + publish + '\'' +
+                ", author='" + author + '\'' +
+                ", residue=" + residue +
+                '}';
+    }
 }
