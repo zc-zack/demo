@@ -14,6 +14,8 @@
             var password = $("#password").val();
             var type = $("#type").val();
 
+            // alert(username + "," + password + "," + type);
+
 
             if(username == ""){
                 alert("用户名不为空！");
@@ -84,13 +86,13 @@
                     </div>
                     <div class="form1-select form1-select1">
                         <select name="cars" id = "type">
-                            <option value="student" >我是管理员</option>
-                            <option value="admin" >我是学生</option>
+                            <option value="student" >我是学生</option>
+                            <option value="admin" >我是管理员</option>
                         </select>
                     </div>
                     <div class="form1-login form1-login1">
-                        <button type="button">
-                            <span class= "white-font" onclick="onValidForm()">登&nbsp;陆</span>
+                        <button type="button" onclick="onValidForm()">
+                            <span class= "white-font" >登&nbsp;陆</span>
                         </button>
                     </div>
                 </form>
