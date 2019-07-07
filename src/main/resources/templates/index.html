@@ -46,25 +46,58 @@
 
     </script>
 </head>
-<body>
-<div class="SignFlowHomepage">
-    <div class ="form">
-        <form method = "POST">
-            <div>
-                <input type="text"  id = "username" placeholder="用户名"/>
-            </div>
-            <div>
-                <input type="password" placeholder="密码" id = "password"/></br>
-            </div>
+<!--<body>-->
+<!--    <div class="SignFlowHomepage">-->
+<!--        <div class ="form">-->
+<!--            <form method = "POST">-->
+<!--                <div>-->
+<!--                    <input type="text"  id = "username" placeholder="用户名"/>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <input type="password" placeholder="密码" id = "password"/>-->
+<!--                </div>-->
 
-            <select name="cars" id = "type">
-                <option value="student" >我是学生</option>
-                <option value="admin" >我是管理员</option>
-            </select>
-            </br>
-            <button type="button" onclick="onValidForm()" >登陆</button>
-        </form>
+<!--                <div>-->
+<!--                    <select name="cars" id = "type">-->
+<!--                        <option value="student" >我是学生</option>-->
+<!--                        <option value="admin" >我是管理员</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <button type="button" onclick="onValidForm()" >登陆</button>-->
+<!--            </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<body>
+<div class="main">
+    <div class="div1 div11">
+        <div class="div2 div22">
+            <div class="div3 div33">
+                <form class="form form1 form11" method="POST">
+                    <div class="form1-input form1-input1">
+                        <i class="ico-user"></i>
+                        <input type="text" placeholder="用户名" id = "username"/>
+                    </div>
+                    <div class="form1-input form1-input1">
+                        <i class="ico-pwd"></i>
+                        <input type="password" placeholder="密码" id = "password"/>
+                    </div>
+                    <div class="form1-select form1-select1">
+                        <select name="cars" id = "type">
+                            <option value="student" >我是管理员</option>
+                            <option value="admin" >我是学生</option>
+                        </select>
+                    </div>
+                    <div class="form1-login form1-login1">
+                        <button type="button">
+                            <span class= "white-font" onclick="onValidForm()">登&nbsp;陆</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
