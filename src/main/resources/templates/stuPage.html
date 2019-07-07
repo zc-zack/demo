@@ -1,147 +1,145 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>后台管理系统</title>
-    <!-- -------------------JS------------------------- -->
-    <script type="text/javascript" src="webjars/layui/2.4.5/layui.js"></script>
-    <script type="text/javascript" src="webjars/jquery/3.4.1/dist/jquery.js"></script>
-    <script type="text/javascript" src="webjars/layui/2.4.5/lay/modules/layer.js"></script>
-
-    <!-- -------------------CSS------------------------- -->
+    <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="webjars/layui/2.4.5/css/layui.css">
-    <link rel="stylesheet" href="webjars/layui/2.4.5/css/modules/layer/default/layer.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <script type="text/javascript"></script>
-    <script type="text/javascript">
-        function getInfo() {
-            $.ajax({
-                type: "post",
-                url: "getAdminUsername.do",
-                data: undefined,
-                success: function (result) {
-                    $("#adminUsername").html(result);
-                }
-            });
-        }
-    </script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body onload="getInfo()" class="layui-layout-body">
+
+<body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header layui-bg-blue">
-        <div class="layui-logo layui-colorpicker-basis-black">类知乎后台管理系统</div>
+    <div class="layui-header" style="background-image: url('/img/bg.png')">
+        <div class="layui-logo"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">用户管理</a></li>
-            <li class="layui-nav-item"><a href="">消息管理</a></li>
-            <li class="layui-nav-item"><a href="">问答管理</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">文件管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
-        </ul>
+
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    <span id="adminUsername">贤心</span>
+                    <i class="layui-icon" style="font-size: 15px">&#xe770;康杰牛逼</i>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="logOut.do">退出登录</a></li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
         </ul>
     </div>
 
-    <!-- 左侧导航栏 -->
     <div class="layui-side layui-bg-cyan">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-bg-cyan layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">查看所有用户</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" lay-filter="test1">查看所有</a></dd>
-                        <dd><a href="javascript:;">逐个查看</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">添加用户</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">逐个添加</a></dd>
-                        <dd><a href="javascript:;">添加管理员</a></dd>
-                        <dd><a href="">跳转链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">修改用户</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">修改权限</a></dd>
-                        <dd><a href="javascript:;">封号</a></dd>
-                        <dd><a href="javascript:;">修改用户信息</a></dd>
-                        <dd><a href="">跳转链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">删除用户</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">删除管理员</a></dd>
-                        <dd><a href="javascript:;">删除用户</a></dd>
-                        <dd><a href="">跳转链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">其他用户管理</a></li>
-                <li class="layui-nav-item"><a href="">用户查询...</a></li>
+            <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
+                <li class="layui-nav-item layui-this"><a href="">图书借阅</a></li>
+                <li class="layui-nav-item"><a href="/his">借阅历史</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- ---------内容主体区域------------- -->
     <div class="layui-body">
 
-        <div class="layui-layer-border">
-            <h4 id="promptBox">查看所有用户>查看所有</h4>
-        </div>
-        <table class="layui-table" lay-data="{ height:500, url:'/selectBorrowBook.do', page:true, id:'idTest'}" lay-filter="demo">
-            <thead>
-            <tr>
-                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-                <th lay-data="{field:'bookName', width:80, sort: true, fixed: true}">书名</th>
-                <th lay-data="{field:'publish', width:180}">出版社</th>
-                <th lay-data="{field:'author', width:180}">作者</th>
-                <th lay-data="{field:'borrowTime', width:80, sort: true}">借阅时间</th>
-                <th lay-data="{field:'backTime', width:250}">归还时间</th>
-                <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-            </tr>
-            </thead>
-        </table>
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label for="name">图书名称:</label>
+                                <input type="text" class="form-control" style="width: 250px" placeholder="请输入图书名称">
+                            </div>
+                            <button type="submit" class="btn btn-primary">查询</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <table class="layui-table" lay-data="{ height:500, url:'/getAllBook.do', page:true, id:'idTest'}" lay-filter="demo">
+                <thead>
+                <tr>
+                    <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+                    <th lay-data="{field:'bookName', width:180}">图书名称</th>
+                    <th lay-data="{field:'publish', width:180}">出版社</th>
+                    <th lay-data="{field:'author', width:80, sort: true}">作者</th>
+                    <th lay-data="{field:'residue', width:250}">库存</th>
+                    <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+                </tr>
+                </thead>
+            </table>
 
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">封号</a>
-            <a class="layui-btn layui-btn-xs" lay-event="Unsealing">解封</a>
-        </script>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">借阅</a>
+            </script>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">编辑图书</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="firstname" class="col-sm-2 control-label">图书名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2 control-label">出版社</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastname" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2 control-label">作者</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastname" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2 control-label">库存</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastname" placeholder="">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div>
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        <span id="bottomTip">底部固定区域</span>
+        <center>Copyright © 2016-2019 - 厦门理工学院版权所有</center>
     </div>
 </div>
-<script>
 
+<script type="text/javascript" src="webjars/layui/2.4.5/layui.js"></script>
+<script>
     //JavaScript代码区域
-    layui.use('element', function(){
+    layui.use('element', function () {
         var element = layui.element;
 
     });
+</script>
+<script>
 
     layui.use('table', function(){
         var table = layui.table;
@@ -153,13 +151,10 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.confirm('UID：'+ data.uid + '<br>' +
-                    '电话号：' + data.telephone + '<br>' +
-                    '用户名：' + data.username + '<br>' +
-                    '性别：' + data.sex + '<br>' +
-                    '签名：' + data.introduce + '<br>' +
-                    '状态：' + data.status + '<br>' +
-                    '权限：' + data.role + '<br>' +
+                layer.confirm('图书名称：'+ data.bookName + '<br>' +
+                    '出版社：' + data.publish + '<br>' +
+                    '作者：' + data.author + '<br>' +
+                    '库存：' + data.residue + '<br>' +
                     '', function(index){
                     layer.close(index);
                 });
@@ -218,4 +213,5 @@
     });
 </script>
 </body>
+
 </html>

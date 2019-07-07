@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="webjars/layui/2.4.5/css/layui.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background-image: url('img/bg.png')">
+    <div class="layui-logo"></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+            <i class="layui-icon" style="font-size: 15px">&#xe770;admin管理员</i>
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-cyan">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree layui-bg-cyan"  lay-filter="test">
+        <li class="layui-nav-item layui-this"><a href="stuPage">图书管理</a></li>
+        <li class="layui-nav-item"><a href="">借阅历史</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+        
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+            <div class="mainTop layui-clear">
+                    <div class="fr">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">名称</label>
+                                </div>
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <input type="text" placeholder="请输入图书名称查询" class="layui-input" style="width: 240px;">
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <button type="button" class="layui-btn layui-btn-normal">搜索</button>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </form>
+                    </div>
+                </div>
+        <table class="layui-table" lay-data="{ height:500, url:'/selectBorrowBook.do', page:true, id:'idTest'}" lay-filter="demo">
+            <thead>
+            <tr>
+                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+                <th lay-data="{field:'bookName', width:180}">图书名称</th>
+                <th lay-data="{field:'publish', width:180}">出版社</th>
+                <th lay-data="{field:'author', width:80, sort: true}">作者</th>
+                <th lay-data="{field:'number', width:250}">借阅人学号</th>
+                <th lay-data="{field:'username', width:250}">借阅人姓名</th>
+                <th lay-data="{field:'borrowTime', width:250}">借阅时间</th>
+                <th lay-data="{field:'backTime', width:250}">归还时间</th>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+            </tr>
+            </thead>
+        </table>
+
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">归还</a>
+        </script>
+    </div>
+
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+   <center>Copyright © 2016-2019 - 厦门理工学院版权所有</center> 
+  </div>
+</div>
+<script type="text/javascript" src="webjars/layui/2.4.5/layui.js"></script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+</script>
+  <script>
+
+      layui.use('table', function(){
+          var table = layui.table;
+          //监听表格复选框选择
+          table.on('checkbox(demo)', function(obj){
+              console.log(obj)
+          });
+          //监听工具条
+          table.on('tool(demo)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'detail'){
+                  layer.confirm('图书名称：'+ data.bookName + '<br>' +
+                      '出版社：' + data.publish + '<br>' +
+                      '作者：' + data.author + '<br>' +
+                      '', function(index){
+                      layer.close(index);
+                  });
+
+              } else if(obj.event === 'del'){ //封号
+                  if (data.status == "正常"){
+                      layer.confirm('真的要把这个人的账号封掉么', function(index){
+                          var load = layer.load(1, {
+                              shade: [0.1,'#fff'] //0.1透明度的白色背景
+                          });
+                          $.ajax({
+                              type: "post",
+                              url: "deleteUser.do",
+                              data: {
+                                  uid : data.uid
+                              },
+                              success: function (result) {
+                                  //obj.del();//删除行
+                                  layer.msg(result);//删除成功！
+                              }
+                          });
+                          layer.close(index);
+                          layer.close(load);
+                      });
+                  } else if (data.status == "封号"){
+                      layer.msg("这个人已经被封号了，别再封了");
+                  }else {
+                      layer.msg("用户状态异常，请重新查询");
+                  }
+              } else if(obj.event === 'Unsealing'){ //解封
+                  layer.alert("确定要给他解封吗？");
+              }
+          });
+
+          var $ = layui.$, active = {
+              getCheckData: function(){ //获取选中数据
+                  var checkStatus = table.checkStatus('idTest')
+                      ,data = checkStatus.data;
+                  layer.alert(JSON.stringify(data));
+              }
+              ,getCheckLength: function(){ //获取选中数目
+                  var checkStatus = table.checkStatus('idTest')
+                      ,data = checkStatus.data;
+                  layer.msg('选中了：'+ data.length + ' 个');
+              }
+              ,isAll: function(){ //验证是否全选
+                  var checkStatus = table.checkStatus('idTest');
+                  layer.msg(checkStatus.isAll ? '全选': '未全选')
+              }
+          };
+
+          $('.demoTable .layui-btn').on('click', function(){
+              var type = $(this).data('type');
+              active[type] ? active[type].call(this) : '';
+          });
+      });
+    </script>
+</body>
+</html>

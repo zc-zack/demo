@@ -4,6 +4,8 @@ public class BorrowInfo {
     private String bookName;
     private String publish;
     private String author;
+    private String username;
+    private String number;
     private String borrowTime;
     private String backTime;
 
@@ -25,6 +27,22 @@ public class BorrowInfo {
 
     public String getAuthor() {
         return author;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public void setAuthor(String author) {
