@@ -14,6 +14,7 @@
 
   <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../static/css/signup/signup.css">
 </head>
 
 <body class="layui-layout-body">
@@ -40,8 +41,8 @@
       <div class="layui-side-scroll">
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
-          <li class="layui-nav-item "><a href="/adminScan">图书借阅</a></li>
-          <li class="layui-nav-item layui-this"><a href="/admin">借阅历史</a></li>
+          <li class="layui-nav-item layui-this"><a href="/adminScan">图书借阅</a></li>
+          <li class="layui-nav-item "><a href="/admin">借阅历史</a></li>
         </ul>
       </div>
     </div>
@@ -50,46 +51,18 @@
 
       <!-- 内容主体区域 -->
       <div style="padding: 15px;">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-5">
-              <form class="form-inline" role="form">
-                <div class="form-group">
-                  <label for="name">图书名称:</label>
-                  <input type="text" class="form-control" style="width: 250px" placeholder="请输入图书名称">
-                </div>
-                <button type="submit" class="btn btn-primary">查询</button>
-              </form>
-            </div>
-          </div>
-        </div>
         <table class="layui-hide" id="LAY_table_user" lay-filter="demo"></table>
 
+        <div class="demoTable">
+          图书名称：
+          <div class="layui-inline">
+            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+          </div>
+          <button class="layui-btn" data-type="reload">搜索</button>
 
-        <!--<table class="layui-table" lay-data="{width: 892, height:330, url:'/getAllBook', page:true, id:'idTest'}" lay-filter="demo">
-          <thead>
-          <tr>
-            <th lay-data="{field:'bookName', width:80, sort: true, fixed: true}">图书名字</th>
-            <th lay-data="{field:'publish', width:80}">出版社</th>
-            <th lay-data="{field:'author', width:80}">作者</th>
-            <th lay-data="{field:'residue', width:80}">库存</th>
-            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-          </tr>
-          </thead>
-        </table>-->
-        <table class="layui-table" lay-data="{width: 892, height:330, url:'/getHistory', page:true, id:'idTest'}" lay-filter="demo">
-          <thead>
-          <tr>
-            <th lay-data="{field:'bookName', width:80, sort: true, fixed: true}">图书名字</th>
-            <th lay-data="{field:'publish', width:80}">出版社</th>
-            <th lay-data="{field:'author', width:80}">作者</th>
-            <th lay-data="{field:'userId', width:80}">借阅人学号</th>
-            <th lay-data="{field:'username', width:80}">借阅人姓名</th>
-            <th lay-data="{field:'borrowTime', width:80}">借阅时间</th>
-            <th lay-data="{field:'backTime', width:80}">归还时间</th>
-          </tr>
-          </thead>
-        </table>
+          <table class="layui-hide" id="test" lay-filter="demo"></table>
+        </div>
+
 
       </div>
     </div>
@@ -103,27 +76,27 @@
           <div class="modal-body">
             <form class="form-horizontal" role="form">
               <div class="form-group">
-                <label for="firstname" class="col-sm-2 control-label">图书名称</label>
+                <label for="bookName" class="col-sm-2 control-label">图书名称</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" placeholder="">
+                  <input type="text" class="form-control" id="bookName" placeholder="">
                 </div>
               </div>
               <div class="form-group">
-                <label for="lastname" class="col-sm-2 control-label">出版社</label>
+                <label for="publish" class="col-sm-2 control-label">出版社</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="lastname" placeholder="">
+                  <input type="text" class="form-control" id="publish" placeholder="">
                 </div>
               </div>
               <div class="form-group">
-                <label for="lastname" class="col-sm-2 control-label">作者</label>
+                <label for="author" class="col-sm-2 control-label">作者</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="lastname" placeholder="">
+                  <input type="text" class="form-control" id="author" placeholder="">
                 </div>
               </div>
               <div class="form-group">
-                <label for="lastname" class="col-sm-2 control-label">库存</label>
+                <label for="residue" class="col-sm-2 control-label">库存</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="lastname" placeholder="">
+                  <input type="text" class="form-control" id="residue" placeholder="">
                 </div>
               </div>
 
@@ -131,7 +104,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">保存</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -163,43 +136,63 @@
       </script>
 
   <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" data-toggle="modal" data-target="#myModal">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   </script>
 
 
   <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
   <script>
+    var bid;
     layui.use('table', function(){
       var table = layui.table;
-      //监听表格复选框选择
-      table.on('checkbox(demo)', function(obj){
-        console.log(obj)
+
+
+      table.render({
+        elem: '#test'
+        ,url:'/getAllBook'
+        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        ,cols: [
+          [
+          ,{field:'bookName', width:100, title: '图书名称'}
+          ,{field:'publish', width:100, title: '出版社'}
+          ,{field:'author', width:80, title: '作者'}
+          ,{field:'residue', title: '库存', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+          ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo', title:"操作"}
+
+        ]
+        ]
       });
+
       //监听工具条
       table.on('tool(demo)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
           layer.msg('ID：'+ data.id + ' 的查看操作');
         } else if(obj.event === 'del'){
-          $.ajax({
+          layer.confirm('真的删除行么', function(index){
+            $.ajax({
               url: "/delete",
-              data: JSON.stringify(data),
+              data: JSON.stringify({bid: data.bid}),
               dataType:"json",
-              content: "application/json;utf-8",
+              contentType: "application/json;charset=utf-8",
               type: "post",
               success: function (result) {
                 layer.msg('删除成功');
               }
 
-          });
-          layer.confirm('真的删除行么', function(index){
+            });
             obj.del();
             layer.close(index);
           });
         } else if(obj.event === 'edit'){
-          layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            $('#bookName').val(data.bookName);
+            $('#publish').val(data.publish);
+            $('#author').val(data.author);
+            $('#residue').val(data.residue);
+            bid = data.bid;
         }
+        
       });
 
       var $ = layui.$, active = {
@@ -224,6 +217,25 @@
         active[type] ? active[type].call(this) : '';
       });
     });
+    function save() {
+        var bookName = $('#bookName').val();
+        var publish = $('#publish').val();
+        var author = $('#author').val();
+        var residue = $('#residue').val();
+        var data = {bid: bid, bookName: bookName, publish: publish, author: author, residue: residue};
+        $.ajax({
+            url: "/updateBook",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (result) {
+                if(result == 1){
+                    window.location = "adminScan";
+                }
+            }
+        });
+    }
   </script>
 </body>
 

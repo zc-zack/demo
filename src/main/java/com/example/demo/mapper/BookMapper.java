@@ -34,4 +34,6 @@ public interface BookMapper {
     Book getBookByBid(Integer bid);
 
     Book findBookByBid(Integer bid);
+
+    List<Book> selectBookByName(String bookName);
 }

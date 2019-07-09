@@ -36,4 +36,8 @@
   <update id="updateBookById" parameterType="com.example.demo.entity.Book">
         update t_book set book_name = #{bookName}, publish = #{publish}, author = #{author}, residue = #{residue} where bid = #{bid}
   </update>
+
+    <select id="selectBookByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from t_book where book_name LIKE CONCAT(CONCAT('%',#{bookName}), '%')
+    </select>
 </mapper>
